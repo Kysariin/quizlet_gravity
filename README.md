@@ -1,7 +1,7 @@
 # quizlet gravity game!
 attempting to make something with similar structure to the (deceased) quizlet gravity game
 
-completed:
+<h2>completed:</h2>
 <ul>
   <li>background and asteroid visuals</li>
 </ul>
