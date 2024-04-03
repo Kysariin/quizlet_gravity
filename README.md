@@ -2,9 +2,9 @@
 attempting to make something with similar structure to the (deceased) quizlet gravity game
 
 completed:
--
--
--
+<ul>
+  <li>background and asteroid visuals</li>
+</ul>
 
 <h2>hopes:</h2>
 <ul>
