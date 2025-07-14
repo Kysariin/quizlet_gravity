@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vocabulary Gravity Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Tag Manager -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZY04T9FVWX"></script>
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- Main Game Container -->
+    <div id="gameContainer">
+        <!-- Scoreboard -->
+        <div id="scoreBoard">
+            Score: <span id="score">0</span> | Level: <span id="level">1</span>
+        </div>
+        <!-- Game Canvas -->
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- Input and Button Area -->
+        <div class="inputArea">
+            <!-- Question Container -->
+            <div id="questionContainer"></div>
+            <!-- Answer Input -->
+            <input type="text" id="answerInput" placeholder="Type your answer...">
+            <!-- Game Controls -->
+            <div class="buttonContainer">
+                <button id="startButton">Start Game</button>
+                <button id="restartButton" style="display: none;">Restart Game</button>
+            </div>
+        </div>
+        
+        <!-- Settings Gear Icon -->
+        <div id="settingsIcon">⚙️</div>
+
+        <!-- Settings Panel -->
+        <div class="settings" id="settings">
+            <div id="left">
+                <div id="spawn-time-slider">
+                    <label for="spawnTime">Spawn Time (seconds):</label>
+                    <input type="range" id="spawnTime" min="1" max="5" value="4" step="0.5">
+                    <span id="spawnTimeValue">4</span>
+                </div>
+                <div id="initial-speed-slider">
+                    <label for="initialFallRate">Initial Fall Speed:</label>
+                    <input type="range" id="initialFallRate" min="0.1" max="2" value="1" step="0.1">
+                    <span id="initialFallRateValue">1</span>
+                </div>
+                <div id="csvFileInputContainer">
+                    <label id="csvFileInputInput" for="csvFileInput" class="fake-button">Upload CSV File</label>
+                    <input id="csvFileInput" type="file" accept=".csv" style="display: none">
+                    <label for="clearButton" class="fake-button">Clear File</label>
+                    <input id="clearButton" type="button" value="Clear" style="display: none;">
+                    <span id="orId">Or</span>
+                </div>
+                <textarea id="textInput" placeholder="Paste CSV data here (format: term,definition)"></textarea>
+            </div>
+            <div id="right">
+                <button id="exportStateToURL">Get Shareable Link</button>
+                <div id="csvSettings">
+                    <div id="delim">
+                        <label>Delimiter:</label>
+                        <select id="delimiter">
+                            <option value=",">,</option>
+                            <option value=";">;</option>
+                            <option value="tab">Tab</option>
+                        </select>
+                    </div>
+                    <div id="direction">
+                        <label>Translation Direction:</label>
+                        <select id="translationDirection">
+                            <option value="term-to-def">Term → Definition</option>
+                            <option value="def-to-term">Definition → Term</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="ignoreParensContainer">
+                    <input type="checkbox" id="ignoreParens">
+                    <span>Ignore text in parentheses</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameOverScreen" class="hidden">
+            <h2 id="gameOverText">GAME OVER</h2>
+            <p id="finalScore">Final Score: 0</p>
+            <div id="missedWords"></div>
+            <button id="playAgainButton">Play Again</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html> 

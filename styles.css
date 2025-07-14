@@ -1,0 +1,280 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameContainer {
+    background: #151b36; /* Match dark background color */
+    border-radius: 0; /* Removed border radius for full screen feel */
+    box-shadow: none; /* Removed box shadow */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    max-width: 100%; /* Ensure full width */
+    display: flex; /* Use flexbox to arrange internal elements */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center content horizontally */
+    position: relative; /* Needed for absolute positioning of settings icon */
+}
+
+#scoreBoard {
+    font-size: 24px;
+    color: white; /* Set text color to white */
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 15px 10px; /* Increase vertical padding */
+    background: #151b36; /* Semi-transparent background for readability */
+    width: 100%; /* Span full width */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+#gameCanvas {
+    width: 100%;
+    flex-grow: 1;
+    background: #f8f9fa; /* Keep a default background for now, will replace with image */
+    border-radius: 0;
+    margin-bottom: 0;
+    background-image: url('gravity_background.png'); /* Set background image */
+    background-size: cover; /* Cover the entire canvas area */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+}
+
+#questionContainer {
+    font-size: 24px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    min-height: 30px;
+    color: white; /* Make text visible against potential dark background */
+    text-shadow: 2px 2px 4px #000000; /* Add shadow for readability */
+    display: none; /* Hide the question container */
+}
+
+.inputArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+    background: #151b36; /* Dark semi-transparent background */
+    width: 100%; /* Span full width */
+    box-sizing: border-box;
+}
+
+#translateText {
+    font-size: 20px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+#answerInput {
+    width: 90%;
+    max-width: 400px;
+    padding: 12px;
+    font-size: 20px;
+    border: none; /* Remove border */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: rgba(206, 206, 206, 0.9); /* Slightly transparent white background */
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 0; /* Removed bottom margin */
+    padding-bottom: 10px; /* Add some padding below buttons */
+}
+
+button {
+    background: #26145c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    min-width: 120px;
+    transition: background-color 0.3s ease; /* Add smooth transition */
+}
+
+button:hover {
+    background: #1f104b;
+}
+
+#restartButton {
+    background: #7a130b;
+}
+
+#restartButton:hover {
+    background: #6c0b0b;
+}
+
+#settingsIcon {
+    position: absolute;
+    top: 15px; /* Adjust top spacing */
+    right: 15px; /* Adjust right spacing */
+    font-size: 30px; /* Size of the gear icon */
+    cursor: pointer;
+    color: white; /* Color of the gear icon */
+    text-shadow: 2px 2px 4px #000000; /* Add shadow for readability */
+    z-index: 20; /* Ensure icon is above settings panel */
+}
+
+.settings {
+    display: none;
+    flex-direction: column; /* Stack settings content */
+    margin-top: 0; /* Removed margin */
+    padding: 30px;
+    background: rgba(248, 249, 250, 0.95); /* Semi-transparent background */
+    border-radius: 10px;
+    position: absolute; /* Position as an overlay */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the panel */
+    z-index: 15; /* Ensure it's above canvas */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 600px;
+    max-height: 90%; /* Limit max height */
+    overflow-y: auto; /* Add scrolling if content overflows */
+}
+
+.settings.active {
+    display: flex;
+}
+
+#left, #right {
+    flex: none; /* Prevent flex growing */
+    width: 100%;
+    margin-bottom: 20px; /* Space between sections */
+}
+
+#right {
+    margin-bottom: 0; /* No bottom margin for the last section */
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.fake-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 0;
+    transition: background-color 0.3s ease; /* Add smooth transition */
+}
+
+.fake-button:hover {
+    background: #45a049;
+}
+
+.settings label, .settings div {
+    margin-bottom: 10px;
+}
+
+.settings select, .settings input[type="range"] {
+    margin-left: 5px;
+}
+
+.settings button {
+    width: auto; /* Auto width for settings buttons */
+    min-width: 0; /* Remove min width constraint */
+}
+
+#exportStateToURL {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#csvFileInputInput, #clearButton {
+    margin-right: 10px;
+}
+
+#ignoreParensContainer {
+    display: flex;
+    align-items: center;
+}
+
+#ignoreParensContainer input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Styles for the game over screen */
+#gameOverScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute; /* Position over the canvas */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95); /* Dark background */
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    z-index: 10; /* Ensure it's on top */
+}
+
+#gameOverScreen.hidden {
+    display: none;
+}
+
+#gameOverText {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+#finalScore {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+
+#missedWords {
+    margin-bottom: 30px;
+    font-size: 1.2em;
+    max-height: 200px; /* Limit height and add scrolling if many words */
+    overflow-y: auto;
+    padding: 0 20px;
+}
+
+#missedWords p {
+    margin: 5px 0;
+}
+
+#playAgainButton {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#playAgainButton:hover {
+    background-color: #45a049;
+} 
